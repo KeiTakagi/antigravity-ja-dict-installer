@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Antigravity 日本語化 かんたんマニュアル (Windows / Linux)</title>
+  <title>Antigravity 日本語化＆自動更新マニュアル (Windows / Linux)</title>
   <style>
     :root {
       --primary: #1a73e8;
@@ -49,15 +49,6 @@
       display: flex;
       align-items: center;
       gap: 8px;
-    }
-    .badge {
-      display: inline-block;
-      padding: 4px 12px;
-      border-radius: 16px;
-      font-size: 13px;
-      font-weight: bold;
-      color: white;
-      background: var(--primary);
     }
     .step-card {
       background: #fafafa;
@@ -176,8 +167,8 @@
 <body>
 
 <div class="container">
-  <h1>Antigravity 日本語化 かんたんマニュアル</h1>
-  <p>このツールを使うと、Google の AI 開発アプリ「Antigravity」を<strong>メニュー・設定画面・内蔵ブラウザ・音声設定までまとめて日本語化</strong>できます。裏で常駐して動き続ける仕組みではないため、パソコンのメモリや CPU は一切消費しません。</p>
+  <h1>Antigravity 日本語化＆自動更新マニュアル</h1>
+  <p>このツールを使うと、Google の AI 開発アプリ「Antigravity」を<strong>メニュー・設定画面（Interface Layout含む）・内蔵ブラウザ・音声設定までまとめて日本語化</strong>できます。一度インストールを実施すると、アプリがアップデートされた場合でも自動で検知し、<strong>常に新しく日本語化された状態</strong>を自動で維持します。</p>
 
   <h2>🪟 Windows の方（たったの2ステップ）</h2>
 
@@ -208,7 +199,7 @@
 
     <div class="success-box">
       <strong>🎉 これで完了です！</strong><br>
-      デスクトップのアイコンやスタートメニューから通常通り Antigravity を起動してください。日本語化された画面でお使いいただけます。
+      デスクトップの「Antigravity」アイコンから通常通り起動してください。アプリが自動アップデートされた場合でも、裏の超軽量な見張り役が自動検知して即座にパッチを再適用します。（手動で再インストールする必要はありません）
     </div>
   </div>
 
@@ -223,13 +214,18 @@
   <h2>❓ よくある質問</h2>
 
   <div class="qa-box">
-    <div class="qa-q">Q. アプリのアップデート後に英語に戻ってしまったら？</div>
-    <div class="qa-a">フォルダ内の <strong><code>install-windows.bat</code></strong>（Linux は <code>./install-linux.sh</code>）をもう一度ダブルクリックするだけで、約 1 秒で最新の日本語状態に戻せます。</div>
+    <div class="qa-q">Q. アプリが自動アップデートされたら、手動で何か作業が必要ですか？</div>
+    <div class="qa-a">一切不要です！バックグラウンドの監視役がアップデートを瞬時に検知し、自動で日本語パッチを当て直してくれます。常に日本語でお使いいただけます。</div>
+  </div>
+
+  <div class="qa-box">
+    <div class="qa-q">Q. バックグラウンドの監視役でパソコンが重くなりませんか？</div>
+    <div class="qa-a">CPU 使用率は 0.0%、メモリ消費もわずか数 MB の超軽量な休眠処理のため、パソコンの動作やバッテリーに影響を与えることはありません。</div>
   </div>
 
   <div class="qa-box">
     <div class="qa-q">Q. 元の状態（公式の英語）に完全に戻したいときは？</div>
-    <div class="qa-a">フォルダ内にある <strong><code>uninstall-windows.bat</code></strong>（Linux は <code>./uninstall-linux.sh</code>）をダブルクリックし、確認画面で <span class="key">y</span> を押すだけで、公式の初期状態に完全に復元されます。</div>
+    <div class="qa-a">フォルダ内にある <strong><code>uninstall-windows.bat</code></strong>（Linux は <code>./uninstall-linux.sh</code>）をダブルクリックし、確認画面で <span class="key">y</span> を押すだけで、監視役を含めて公式の初期状態に完全に復元されます。</div>
   </div>
 
   <div class="disclaimer-box">

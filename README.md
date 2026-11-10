@@ -1,7 +1,19 @@
 # Antigravity 日本語化インストーラー（Windows / Linux 対応）
 
-Google の AI 開発アプリ「Antigravity」（デスクトップ版）を日本語化するための軽量インストーラーパッケージです。
-常駐プロセスは一切なく、PC のメモリや CPU を消費しません。
+Google の AI 開発アプリ「Antigravity」（デスクトップ版）を日本語化し、
+**アプリの自動アップデートがあっても完全自動で日本語状態を維持する** インストーラーパッケージです。
+
+---
+
+## 💡 特徴
+- **完全自動アップデート追従**  
+  一度インストールすれば、Antigravity がアップデートされて英語に戻っても、バックグラウンドの軽量見張り役（Watcher）が自動検知して即座にパッチを再適用します。手動での再作業は一切不要です。
+- **超軽量設計**  
+  バックグラウンド監視は CPU 使用率 0.0%、メモリ消費わずか数MBの休眠ループ処理で、PC の動作を一切妨げません。
+- **最新UI対応**  
+  設定（一般・Interface Layout・ブラウザ・音声等）、メニューバー、ボタンなど未翻訳項目（全76項目）を網羅的に日本語化。
+- **完全アンインストール対応**  
+  不要になった場合はワンクリックで公式の初期状態（英語）に完全復元できます。
 
 ---
 
@@ -11,13 +23,15 @@ antigravity-ja-dict-installer/
 ├── マニュアル.html              ★ ブラウザで読める図解マニュアル
 ├── はじめにお読みください.txt    ★ メモ帳で読めるかんたん説明書
 ├── install-windows.bat          ★ Windows用 インストーラー（ダブルクリックで実行）
-├── install-windows.ps1          ★ Windows PowerShell用処理本体
+├── install-windows.ps1          ★ Windows 自動化セットアップ本体
 ├── uninstall-windows.bat        ★ Windows用 完全アンインストーラー
 ├── uninstall-windows.ps1        ★ Windows 完全アンインストール本体
 ├── install-linux.sh             ★ Linux用 インストーラー
 ├── uninstall-linux.sh           ★ Linux用 完全アンインストーラー
-├── i18n_dict.json               ★ 日本語辞書（全71項目）
-├── i18n_module.js / patcher.js / main_hook.js ★ Modプログラム
+├── watcher.ps1                  ★ Windows用 アップデート自動監視スクリプト
+├── watcher.sh                   ★ Linux用 アップデート自動監視スクリプト
+├── i18n_dict.json               ★ 日本語辞書（全76項目）
+├── i18n_module.js / patcher.js / main_hook.js ★ Modプログラム本体
 └── README.md
 ```
 
@@ -29,6 +43,8 @@ antigravity-ja-dict-installer/
 1. `antigravity-ja-dict-installer.zip` を右クリックして **「すべて展開...」** を行います。
 2. 展開したフォルダ内の **`install-windows.bat`** をダブルクリックして実行します。
 3. 画面に `Setup completed successfully!` と表示されたらセットアップ完了です！
+   - デスクトップの「Antigravity」アイコンから通常通り起動してください。
+   - 以降は、アプリがアップデートされても自動で日本語が維持されます。
 
 ### 🐧 Linux の場合
 ターミナルを開き、解凍フォルダで以下を実行します：

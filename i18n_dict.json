@@ -69,5 +69,10 @@
   "Microphone": "マイク",
   "Input device for voice mode and dictation.": "音声モードおよび音声入力用の入力デバイスです。",
   "Volume": "音量",
-  "How loud Antigravity's voice is.": "Antigravityの音声の音量を調整します。"
+  "How loud Antigravity's voice is.": "Antigravityの音声の音量を調整します。",
+  "Interface Layout": "インターフェースのレイアウト",
+  "Interface Layout:": "インターフェースのレイアウト:",
+  "Choose how the interface is arranged.": "インターフェースの配置を選択します。",
+  "Layout": "レイアウト",
+  "Layout:": "レイアウト:"
 }

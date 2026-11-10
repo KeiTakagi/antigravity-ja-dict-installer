@@ -1,4 +1,4 @@
-# uninstall-windows.ps1
+﻿# uninstall-windows.ps1
 $ErrorActionPreference = "Stop"
 
 Write-Host "========================================================" -ForegroundColor Yellow
@@ -6,7 +6,7 @@ Write-Host "  Antigravity Japanese Localization Uninstaller" -ForegroundColor Ye
 Write-Host "========================================================" -ForegroundColor Yellow
 Write-Host ""
 Write-Host "This will restore Antigravity to the official English version" -ForegroundColor Gray
-Write-Host "and remove all Japanese translation mod files and dictionaries." -ForegroundColor Gray
+Write-Host "and remove all Japanese translation mod files, watchers, and dictionaries." -ForegroundColor Gray
 Write-Host ""
 
 $confirm = Read-Host "Are you sure you want to completely uninstall? (y/N)"
@@ -17,21 +17,24 @@ if ($confirm -ne "y" -and $confirm -ne "Y") {
 
 $dataDir = Join-Path $env:LOCALAPPDATA "antigravity-ja"
 $exe = Join-Path $env:LOCALAPPDATA "Programs\antigravity\Antigravity.exe"
-$startupLnk = Join-Path ([Environment]::GetFolderPath("Startup")) "Antigravity日本語化.lnk"
+$startupLnk = Join-Path ([Environment]::GetFolderPath("Startup")) "AntigravityJaCheck.lnk"
+$oldStartupLnk = Join-Path ([Environment]::GetFolderPath("Startup")) "Antigravity日本語化.lnk"
 $desktopLnk = Join-Path ([Environment]::GetFolderPath("Desktop")) "Antigravity.lnk"
 
-# 1. Stop any residual processes
-Write-Host "[1/5] Stopping any running watcher or checker processes..." -ForegroundColor Cyan
+# 1. Stop watcher process
+Write-Host "[1/5] Stopping auto-updater background watcher..." -ForegroundColor Cyan
 try {
     Get-CimInstance Win32_Process -Filter "Name='powershell.exe'" |
-        Where-Object { $_.CommandLine -like "*antigravity-ja\*" } |
+        Where-Object { $_.CommandLine -like "*antigravity-ja\watcher.ps1*" } |
         ForEach-Object { Stop-Process -Id $_.ProcessId -Force }
+    Write-Host "  -> Background watcher stopped." -ForegroundColor Green
 } catch {}
 
-# 2. Cleanup shortcuts & registry
-Write-Host "[2/5] Cleaning up shortcuts and registry keys..." -ForegroundColor Cyan
-if (Test-Path $startupLnk) { Remove-Item $startupLnk -Force -ErrorAction SilentlyContinue }
+# 2. Cleanup registry & startup
+Write-Host "[2/5] Cleaning up registry keys and shortcuts..." -ForegroundColor Cyan
 Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" -Name "AntigravityJaWatcher" -ErrorAction SilentlyContinue
+if (Test-Path $startupLnk) { Remove-Item $startupLnk -Force -ErrorAction SilentlyContinue }
+if (Test-Path $oldStartupLnk) { Remove-Item $oldStartupLnk -Force -ErrorAction SilentlyContinue }
 
 if (Test-Path $desktopLnk) {
     if (Test-Path $exe) {
@@ -41,12 +44,13 @@ if (Test-Path $desktopLnk) {
         $sc.Arguments = ""
         $sc.WorkingDirectory = Split-Path $exe
         $sc.IconLocation = "$exe,0"
+        $sc.WindowStyle = 1
         $sc.Save()
     } else {
         Remove-Item $desktopLnk -Force -ErrorAction SilentlyContinue
     }
 }
-Write-Host "  -> Desktop shortcut restored to original." -ForegroundColor Green
+Write-Host "  -> Auto-start entries removed and shortcut restored." -ForegroundColor Green
 
 # 3. Check running Antigravity
 $runningApp = Get-Process Antigravity -ErrorAction SilentlyContinue
