@@ -1,0 +1,12 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Local backups of user machine's original language files
+backups/
+
+# Temporary / OS files
+.DS_Store
+Thumbs.db
+*.log

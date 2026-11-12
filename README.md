@@ -1,37 +1,43 @@
-# Antigravity 日本語化インストーラー（Windows / Linux 対応）
+# Antigravity 日本語化インストーラー Ver1.1.0（Windows / macOS / Linux 対応）
 
-Google の AI 開発アプリ「Antigravity」（デスクトップ版）を日本語化し、
-**アプリの自動アップデートがあっても完全自動で日本語状態を維持する** インストーラーパッケージです。
+Google の AI 開発アプリ **「Antigravity / Antigravity IDE」** で表示される言語設定ファイル内の英語メッセージを **100% 日本語化** するマルチプラットフォーム・インストーラーです。
+
+裏で常駐して動き続ける仕組みではないため、**パソコンのメモリや CPU は一切消費しません**。
 
 ---
 
-## 💡 特徴
-- **完全自動アップデート追従**  
-  一度インストールすれば、Antigravity がアップデートされて英語に戻っても、バックグラウンドの軽量見張り役（Watcher）が自動検知して即座にパッチを再適用します。手動での再作業は一切不要です。
-- **超軽量設計**  
-  バックグラウンド監視は CPU 使用率 0.0%、メモリ消費わずか数MBの休眠ループ処理で、PC の動作を一切妨げません。
-- **最新UI対応**  
-  設定（一般・Interface Layout・ブラウザ・音声等）、メニューバー、ボタンなど未翻訳項目（全76項目）を網羅的に日本語化。
-- **完全アンインストール対応**  
-  不要になった場合はワンクリックで公式の初期状態（英語）に完全復元できます。
+## ✨ Ver1.1.0 の主な進化点
+
+- **Windows / macOS / Linux の 3 OS 完全対応**
+  - GUI セットアップ ウィザード・対話型 CLI・ワンライナー (`--silent`) のすべてに対応。
+- **言語設定ファイル全項目の 100% 完全日本語化（全 1,326 辞書項目・16,558 UI メッセージ網羅）**
+  - コア UI (`nls.messages.json`: 全 16,558 件) の未翻訳残存 647 件をすべて自然な日本語に翻訳。
+  - 日本語言語パック (`main.i18n.json`) に欠落していた Antigravity 固有モジュール（Agent, Walkthrough, Browser, Terminal, Chat 等）全 1,228 キーを追加。
+  - 組み込み拡張機能（全 101 個: `agy`, `antigravity-code-executor`, `antigravity-dev-containers`, `antigravity-remote-openssh`, `antigravity-remote-wsl` 等）およびユーザー拡張機能の `package.nls.json` / `package.nls.ja.json` を完全日本語化。
+  - コンパイル済み言語パック キャッシュ (`clp/*/nls.messages.json`) と `argv.json` (`"locale": "ja"`) を自動更新。
+- **安全設計（自動バックアップ＆ワンクリック完全復元）**
+  - 変更前の全ファイルを `backups/` に自動保存し、いつでも初期状態（英語）へ完全復元できます。
 
 ---
 
 ## 📁 フォルダ構成
+
 ```text
 antigravity-ja-dict-installer/
-├── マニュアル.html              ★ ブラウザで読める図解マニュアル
-├── はじめにお読みください.txt    ★ メモ帳で読めるかんたん説明書
-├── install-windows.bat          ★ Windows用 インストーラー（ダブルクリックで実行）
-├── install-windows.ps1          ★ Windows 自動化セットアップ本体
-├── uninstall-windows.bat        ★ Windows用 完全アンインストーラー
-├── uninstall-windows.ps1        ★ Windows 完全アンインストール本体
-├── install-linux.sh             ★ Linux用 インストーラー
-├── uninstall-linux.sh           ★ Linux用 完全アンインストーラー
-├── watcher.ps1                  ★ Windows用 アップデート自動監視スクリプト
-├── watcher.sh                   ★ Linux用 アップデート自動監視スクリプト
-├── i18n_dict.json               ★ 日本語辞書（全76項目）
-├── i18n_module.js / patcher.js / main_hook.js ★ Modプログラム本体
+├── install-windows.bat          ★ Windows用 インストーラー（ダブルクリックで実行 / Shift-JIS・CRLF）
+├── AntigravityJP_Setup.bat      ★ Windows用 インストーラー（同上）
+├── uninstall-windows.bat        ★ Windows用 アンインストーラー（英語環境へ復元）
+├── install-windows.ps1          ★ Windows PowerShell セットアップスクリプト
+├── AntigravityJP_Setup.command  ★ macOS用 インストーラー（Finder からダブルクリックで実行）
+├── install.sh                   ★ macOS / Linux 共通インストーラー
+├── uninstall.sh                 ★ macOS / Linux 共通アンインストーラー
+├── AntigravityJP_Installer.py   ★ マルチプラットフォーム GUI / CLI インストーラー本体
+├── scripts/
+│   └── translate_antigravity.py ★ 全言語設定ファイル一括翻訳エンジン
+├── translations/
+│   └── ja_dictionary.json       ★ 日本語翻訳辞書（全 1,326 項目）
+├── INSTALL.md                   ★ OS別 詳細インストール手順書
+├── CHANGELOG.md                 ★ 更新履歴
 └── README.md
 ```
 
@@ -39,33 +45,37 @@ antigravity-ja-dict-installer/
 
 ## 🚀 インストール手順
 
-### 🪟 Windows の場合
-1. `antigravity-ja-dict-installer.zip` を右クリックして **「すべて展開...」** を行います。
-2. 展開したフォルダ内の **`install-windows.bat`** をダブルクリックして実行します。
-3. 画面に `Setup completed successfully!` と表示されたらセットアップ完了です！
-   - デスクトップの「Antigravity」アイコンから通常通り起動してください。
-   - 以降は、アプリがアップデートされても自動で日本語が維持されます。
+### 🪟 Windows (Windows 10 / 11)
+1. [Releases](https://github.com/KeiTakagi/antigravity-ja-dict-installer/releases) から `antigravity-ja-dict-installer-Ver1.1.0-windows.zip`（または `antigravity-ja-dict-installer.zip`）をダウンロードして **「すべて展開...」** します。
+2. 展開したフォルダ内の **`install-windows.bat`**（または **`AntigravityJP_Setup.bat`**）をダブルクリックして実行します。
+3. セットアップ画面の **「日本語化を実行 (推奨)」** をクリックします。
+4. 完了メッセージが表示されたら、Antigravity IDE を再起動してください。
 
-### 🐧 Linux の場合
-ターミナルを開き、解凍フォルダで以下を実行します：
-```bash
-chmod +x install-linux.sh
-./install-linux.sh
-```
+### 🍎 macOS (Apple Silicon / Intel)
+1. [Releases](https://github.com/KeiTakagi/antigravity-ja-dict-installer/releases) から `antigravity-ja-dict-installer-Ver1.1.0-macos.zip` をダウンロードして展開します。
+2. **`AntigravityJP_Setup.command`** をダブルクリックするか、ターミナルで以下を実行します：
+   ```bash
+   chmod +x install.sh AntigravityJP_Setup.command
+   ./install.sh
+   ```
+
+### 🐧 Linux (Ubuntu / Debian / Fedora / Arch 等)
+1. [Releases](https://github.com/KeiTakagi/antigravity-ja-dict-installer/releases) から `antigravity-ja-dict-installer-Ver1.1.0-linux.tar.gz` をダウンロードして展開し、`install.sh` を実行します：
+   ```bash
+   tar -xzf antigravity-ja-dict-installer-Ver1.1.0-linux.tar.gz
+   cd antigravity-ja-dict-installer-Ver1.1.0
+   ./install.sh
+   ```
 
 ---
 
-## 🗑️ 完全アンインストール（初期状態への復元）
-- **Windows**: フォルダ内の **`uninstall-windows.bat`** をダブルクリックし、`y` を押します。
-- **Linux**: ターミナルで `./uninstall-linux.sh` を実行し、`y` を押します。
+## 🔄 アンインストール（英語環境への復元）
 
-アプリ本体および設定ファイルが、公式の初期状態（英語）に完全に戻ります。
+- **Windows**: `uninstall-windows.bat` をダブルクリックするか、インストーラー画面の「英語に復元 (アンインストール)」をクリックします。
+- **macOS / Linux**: `./uninstall.sh`（または `./install.sh --restore`）を実行します。
 
 ---
 
-## ⚠️ 免責事項・ライセンスについて (Disclaimer)
+## 📄 ライセンス
 
-- **非公式ツール**: 本ツールは有志が作成した非公式（Unofficial）のローカライズツールであり、Google LLC との関係、提携、保証等はありません。
-- **無保証・自己責任**: 本ツールの使用によって生じたいかなる損害（データ破損、アプリの不具合等）についても、作成者は一切の責任を負いかねます。自己責任にてご利用ください。
-- **再配布の規約**: 本ツールには Antigravity 本体の実行ファイルや著作物は同梱されておらず、ローカル差分適用スクリプトおよび辞書データのみで構成されています。
-- **謝辞**: 本ツールのパッチ機構および辞書ベースは、先行してコミュニティで Antigravity 日本語化 Mod を公開・共有してくださった有志の方々の知見を参考に作成されています。
+MIT License
