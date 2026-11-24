@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Antigravity 日本語化マニュアル Ver1.2.0 (Windows / macOS / Linux)</title>
+  <title>Antigravity 日本語化マニュアル Ver1.2.1 (Windows / macOS / Linux)</title>
   <style>
     :root {
       --primary: #1a73e8;
@@ -165,17 +165,17 @@
 <body>
 
 <div class="container">
-  <h1>Antigravity 日本語化マニュアル Ver1.2.0</h1>
-  <p>このツールを使うと、Google の AI 開発アプリ「Antigravity」（デスクトップ版）を<strong>メニュー・設定画面（Interface Layout含む）・内蔵ブラウザ・音声設定・チャットUIまでまとめて日本語化（1,279項目対応）</strong>できます。バックグラウンド常駐プロセスを一切使わないクリーン＆軽量設計です。</p>
+  <h1>Antigravity 日本語化マニュアル Ver1.2.1</h1>
+  <p>このツールを使うと、Google の AI 開発アプリ「Antigravity」（デスクトップ版 <code>v2.35.0</code> 対応）を<strong>メニュー・設定画面（Interface Layout含む）・内蔵ブラウザ・音声設定・チャットUIまでまとめて日本語化（1,279項目対応）</strong>できます。バックグラウンド常駐プロセスを一切使わないクリーン＆軽量設計です。</p>
 
-  <h2>🪟 Windows の方（たったの2ステップ）</h2>
+  <h2>🪟 Windows の方（初心者向けステップバイステップ）</h2>
 
   <div class="step-card">
     <div class="step-title">
       <span class="step-num">1</span>
       ZIPファイルを「すべて展開（解凍）」する
     </div>
-    <p>ダウンロードした <code>antigravity-ja-dict-installer.zip</code> を<strong>右クリック</strong>して、<strong>「すべて展開...」</strong> をクリックし、展開ボタンを押します。</p>
+    <p>ダウンロードした <code>antigravity-ja-dict-installer.zip</code>（または <code>antigravity-ja-dict-installer-Ver1.2.1-windows.zip</code>）を<strong>右クリック</strong>して、<strong>「すべて展開...」</strong> をクリックし、右下の「展開」ボタンを押します。</p>
     <div class="alert-box">
       <strong>⚠️ ご注意：</strong> ZIP を展開せずに、ZIP の中身を直接ダブルクリックすると正常に動作しません。必ず「すべて展開」を行ってから作業してください。
     </div>
@@ -186,8 +186,8 @@
       <span class="step-num">2</span>
       インストーラーを実行する
     </div>
-    <p>展開したフォルダの中にある <strong><code>install-windows.bat</code></strong> をダブルクリックして実行します。</p>
-    <p>Antigravity が起動中の場合は、自動で安全に終了して日本語化パッチを適用し、そのまま日本語表示で再起動できます。</p>
+    <p>展開したフォルダの中にある <strong><code>install-windows.bat</code></strong>（または <strong><code>AntigravityJP_Setup.bat</code></strong>）をダブルクリックして実行します。</p>
+    <p>Antigravity が起動中の場合は「パッチを適用するために Antigravity を終了してよろしいですか？ (y/N)」と表示されますので、<span class="key">y</span> を入力して <span class="key">Enter</span> を押すと安全に終了してパッチを適用し、そのまま日本語表示で再起動できます。</p>
 
     <div class="alert-box">
       <strong>💡 「Windows によって PC が保護されました」という青い画面が出たら？</strong><br>
@@ -212,8 +212,13 @@
   <h2>❓ よくある質問</h2>
 
   <div class="qa-box">
+    <div class="qa-q">Q. 対応している Antigravity のバージョンは？</div>
+    <div class="qa-a">Google Antigravity デスクトップアプリ <strong>v2.35.0</strong>（v2.18.1 〜 v2.35.0）にて翻訳辞書の構築と動作検証を行っています。</div>
+  </div>
+
+  <div class="qa-box">
     <div class="qa-q">Q. バックグラウンドで常駐する監視プロセスはありますか？</div>
-    <div class="qa-a">Ver1.2.0 ではバックグラウンド常駐プロセス（Watcher）を完全廃止しました。メモリや CPU を一切消費しません。</div>
+    <div class="qa-a">Ver1.2.0 以降、バックグラウンド常駐プロセス（Watcher）は完全廃止しました。メモリや CPU を一切消費しません。アップデートで英語に戻った場合は、再度 <code>install-windows.bat</code> を実行するだけで1秒で再適用されます。</div>
   </div>
 
   <div class="qa-box">
@@ -227,8 +232,9 @@
   </div>
 
   <div class="disclaimer-box">
-    <h3>⚠️ 免責事項・ライセンスについて (Disclaimer)</h3>
+    <h3>📚 参考資料・免責事項 (References &amp; Disclaimer)</h3>
     <ul>
+      <li><strong>参考資料：</strong> <a href="https://antigravity.google" target="_blank" rel="noopener">Google Antigravity 公式ページ</a> / <a href="https://github.com/electron/asar" target="_blank" rel="noopener">Electron ASAR Specification</a> / <a href="https://www.electronjs.org/docs/latest/tutorial/process-model" target="_blank" rel="noopener">Electron Process Model &amp; IPC</a></li>
       <li><strong>非公式ツール：</strong> 本ツールは有志が作成した非公式（Unofficial）のローカライズツールであり、Google LLC との関係、提携、保証等はありません。</li>
       <li><strong>無保証・自己責任：</strong> 本ツールの使用によって生じたいかなる損害（データ破損、アプリの不具合等）についても、作成者は一切の責任を負いかねます。自己責任にてご利用ください。</li>
       <li><strong>著作権・再配布について：</strong> 本ツールには Antigravity 本体の実行ファイルや著作物は同梱されておらず、ローカル差分適用スクリプトおよび辞書データのみで構成されています。</li>
@@ -236,7 +242,7 @@
   </div>
 
   <footer>
-    Antigravity Japanese Localization Installer Ver1.2.0 (Windows / macOS / Linux)
+    Antigravity Japanese Localization Installer Ver1.2.1 (Tested on Antigravity v2.35.0)
   </footer>
 </div>
 

@@ -1,8 +1,8 @@
 ﻿<#
 .SYNOPSIS
-    Antigravity デスクトップアプリ日本語化インストーラー Ver1.2.0 (Windows PowerShell)
+    Antigravity デスクトップアプリ日本語化インストーラー Ver1.2.1 (Windows PowerShell)
 .DESCRIPTION
-    Google の AI アプリ「Antigravity」（デスクトップ版）を完全日本語化します。
+    Google の AI アプリ「Antigravity」（デスクトップ版 v2.35.0 対応）を完全日本語化します。
     ※ Antigravity IDE (VS Code エディタ版) は設定変更せず対象外（除外・英語維持）とします。
     ※ 常駐監視プロセス（Watcher）は使用しません。
 #>
@@ -85,8 +85,8 @@ if ($Status) {
 # 通常インストール＆日本語化モード
 # -------------------------------------------------------------
 Write-Host "========================================================" -ForegroundColor Cyan
-Write-Host "  Antigravity 日本語化インストーラー Ver1.2.0" -ForegroundColor Cyan
-Write-Host "  (Antigravity デスクトップ版 専用セットアップ)" -ForegroundColor Cyan
+Write-Host "  Antigravity 日本語化インストーラー Ver1.2.1" -ForegroundColor Cyan
+Write-Host "  (Antigravity デスクトップ版 v2.35.0 対応セットアップ)" -ForegroundColor Cyan
 Write-Host "========================================================" -ForegroundColor Cyan
 Write-Host ""
 

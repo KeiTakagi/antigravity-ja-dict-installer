@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ============================================================================
-# Antigravity 日本語化 アンインストーラー Ver1.2.0 (macOS / Linux)
+# Antigravity 日本語化 アンインストーラー Ver1.2.1 (macOS / Linux)
 # ============================================================================
 set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

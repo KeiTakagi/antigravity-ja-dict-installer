@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Antigravity 日本語化インストーラー (antigravity-ja-dict-installer) Ver1.2.0
+Antigravity 日本語化インストーラー (antigravity-ja-dict-installer) Ver1.2.1
 ==========================================================================
 Windows / macOS / Linux マルチプラットフォーム対応
-Antigravity デスクトップアプリのメニュー・設定画面・UI（全 1,279 項目）を
-常駐プロセスなし（CPU/メモリ消費ゼロ）でワンクリック日本語化します。
+Google Antigravity デスクトップアプリ (v2.35.0 動作確認済み) のメニュー・設定画面・UI
+（全 1,279 項目）を常駐プロセスなし（CPU/メモリ消費ゼロ）でワンクリック日本語化します。
 ※ Antigravity IDE (VS Code エディタ版) の設定は変更しません（完全除外）。
 """
 
@@ -16,7 +16,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-APP_VERSION = "1.2.0"
+APP_VERSION = "1.2.1"
 CURRENT_OS = platform.system()
 SCRIPT_DIR = Path(__file__).resolve().parent
 
@@ -128,7 +128,7 @@ def launch_gui(default_app_dir: str | None = None) -> int:
 
     tk.Label(
         header_frame,
-        text="Antigravity デスクトップアプリのメニュー・設定・UI を 100% 日本語化します（常駐プロセスなし・CPU/メモリ消費ゼロ）",
+        text="Antigravity デスクトップアプリ (v2.35.0 対応) のメニュー・設定・UI を 100% 日本語化します（常駐なし）",
         font=("Yu Gothic UI", 9),
         fg="#a6adc8",
         bg="#181825",
@@ -278,7 +278,7 @@ def launch_gui(default_app_dir: str | None = None) -> int:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Antigravity 日本語化インストーラー Ver1.2.0 (Windows / macOS / Linux)")
+    parser = argparse.ArgumentParser(description="Antigravity 日本語化インストーラー Ver1.2.1 (Windows / macOS / Linux)")
     parser.add_argument("--silent", action="store_true", help="GUI を表示せず自動で日本語化を適用する")
     parser.add_argument("--cli", action="store_true", help="対話型 CLI メニューで起動する")
     parser.add_argument("--status", action="store_true", help="現在の日本語化状況を確認する")

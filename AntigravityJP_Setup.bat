@@ -1,10 +1,10 @@
 @echo off
 rem ====================================================================
-rem Antigravity 日本語化インストーラー Ver1.2.0 (Windows / Shift-JIS / CRLF)
+rem Antigravity 日本語化インストーラー Ver1.2.1 (Windows / Shift-JIS / CRLF)
 rem ====================================================================
 setlocal
 chcp 932 > nul
-title Antigravity 日本語化インストーラー Ver1.2.0
+title Antigravity 日本語化インストーラー Ver1.2.1
 
 set "SCRIPT_DIR=%~dp0"
 set "PYTHONUTF8=1"
