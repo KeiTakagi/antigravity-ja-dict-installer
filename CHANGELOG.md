@@ -4,6 +4,20 @@
 
 ---
 
+## [Ver1.2.2] - 2026-11-25
+
+### Added & Fixed (`Antigravity v2.35.1` 対応・設定画面網羅・動的翻訳強化)
+- **翻訳作業・動作確認済み `Antigravity` バージョン (`v2.35.1`) への更新**
+  - Google Antigravity Desktop App **`v2.35.1`**（先行確認 `v2.35.0` を含め `v2.18.1` 〜 `v2.35.1` 対応）での動作検証を完了し、日本語辞書を **1,279 項目 → 1,580 項目（+301 項目）** へ拡充。
+- **設定画面（Settings）未訳項目の大規模追加**
+  - `Input Box`、`This computer`、`Chat`、`Conversation steps`、`Knowledge Work`、`Software Engineering`、`Notification settings`、`Font` / `Font size`、`Give Feedback`、`Show All`、`Orchestrator Settings`、`Dictation languages` など `v2.35.0`〜`v2.35.1` の設定 UI 項目を網羅。
+- **`WebContentsView` 対応 Live reload 配信の修正（`Mod v1.4.7`）**
+  - `main_hook.js` が親ウィンドウだけでなく `webContents.getAllWebContents()` へ `i18n:dict-updated` を送信するよう修正し、設定画面など子ビューでも辞書変更が即座に反映されるよう改善。
+- **プラン・利用上限・残り時間などの動的英語メッセージ対応（`REGEX_RULES` 拡充）**
+  - `Your plan: <プラン名>`、`You can upgrade to a/an <プラン名> plan to receive higher rate limits.`、`Five Hour Limit Remaining`、`You have used some of your 5-hour limit, it will fully refresh in ...`、`Available AI credits: ...` などの動的パターンを追加。
+
+---
+
 ## [Ver1.2.1] - 2026-11-24
 
 ### Added & Improved (Documentation & Usability)

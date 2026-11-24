@@ -1,11 +1,11 @@
-# Antigravity 日本語化インストーラー Ver1.2.1（Windows / macOS / Linux 対応）
+# Antigravity 日本語化インストーラー Ver1.2.2（Windows / macOS / Linux 対応）
 
-[![Release](https://img.shields.io/badge/release-Ver1.2.1-blue.svg)](https://github.com/KeiTakagi/antigravity-ja-dict-installer/releases)
-[![Antigravity](https://img.shields.io/badge/Antigravity-v2.35.0%20tested-brightgreen.svg)](https://antigravity.google)
+[![Release](https://img.shields.io/badge/release-Ver1.2.2-blue.svg)](https://github.com/KeiTakagi/antigravity-ja-dict-installer/releases)
+[![Antigravity](https://img.shields.io/badge/Antigravity-v2.35.1%20tested-brightgreen.svg)](https://antigravity.google)
 [![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-informational.svg)](./INSTALL.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
-Google の AI 開発デスクトップアプリ **「Antigravity」** のメニューバー・設定画面（Settings）・Interface Layout・内蔵ブラウザ・音声設定・チャット UI まで、**全 1,279 項目をワンクリックで日本語化** するインストーラーです。
+Google の AI 開発デスクトップアプリ **「Antigravity」** のメニューバー・設定画面（Settings）・チャット・通知・プラン表示・内蔵ブラウザ・音声設定まで、**全 1,580 項目（＋動的メッセージ対応）をワンクリックで日本語化** するインストーラーです。
 
 > **💡 ポイント**
 > - **パソコンが重くならない設計**：裏で動き続ける常駐監視プログラム（Watcher）を一切使わないため、CPU やメモリを消費しません。
@@ -16,7 +16,7 @@ Google の AI 開発デスクトップアプリ **「Antigravity」** のメニ�
 ## 📑 目次
 
 1. [📋 動作環境・前提バージョン](#-動作環境前提バージョン)
-2. [✨ 前回バージョンからの変更点（Ver1.2.1）](#-前回バージョンからの変更点ver121)
+2. [✨ 前回バージョンからの変更点（Ver1.2.2）](#-前回バージョンからの変更点ver122)
 3. [📦 インストール方法](#-インストール方法)
    - [🪟 Windows のインストール手順](#-windows-のインストール手順)
    - [🍎 macOS のインストール手順](#-macos-のインストール手順)
@@ -38,26 +38,24 @@ Google の AI 開発デスクトップアプリ **「Antigravity」** のメニ�
 
 | 項目 | バージョン・仕様 |
 | :--- | :--- |
-| **本ツールのバージョン** | **`Ver1.2.1`** (`1.2.1`) |
-| **翻訳作業・動作確認済み Antigravity** | **Google Antigravity Desktop App `v2.35.0`**（`v2.18.1` 〜 `v2.35.0` 対応確認済み） |
-| **内蔵パッチャーエンジン** | `Antigravity UI Japanese Localization Mod v1.4.4` |
-| **収録日本語翻訳辞書** | **`1,279 項目`**（`i18n_dict.json` / リアルタイム Live reload 対応） |
+| **本ツールのバージョン** | **`Ver1.2.2`** (`1.2.2`) |
+| **翻訳作業・動作確認済み Antigravity** | **Google Antigravity Desktop App `v2.35.1`**（`v2.35.0` / `v2.18.1` 〜 `v2.35.1` 対応確認済み） |
+| **内蔵パッチャーエンジン** | `Antigravity UI Japanese Localization Mod v1.4.7` |
+| **収録日本語翻訳辞書** | **`1,580 項目`**（`i18n_dict.json` ＋ 動的メッセージ正規表現ルール / リアルタイム Live reload 対応） |
 | **対応 OS** | Windows 10 / 11 (x64 / ARM64)、macOS (Apple Silicon / Intel)、Linux (Ubuntu / Debian / Fedora / Arch 等) |
 | **常駐監視プロセス (Watcher)** | **なし**（完全廃止・CPU / メモリ消費ゼロ） |
 | **Antigravity IDE (VS Code 版)** | **対象外**（設定変更なし・完全除外） |
 
 ---
 
-## ✨ 前回バージョンからの変更点（Ver1.2.1）
+## ✨ 前回バージョンからの変更点（Ver1.2.2）
 
-- **翻訳作業時の `Antigravity` バージョン (`v2.35.0`) の明記**
-  - 翻訳辞書の作成とパッチ検証を行った本体バージョン (`v2.35.0`) をドキュメント冒頭に明記しました。
-- **初心者向け「📦 インストール方法」「🚀 翻訳の仕方」ガイドの視覚的刷新**
-  - 1ステップ＝1操作のステップバイステップ手順、コピペで使えるコマンド例、翻訳前後の入出力イメージ、`> **💡 ポイント**` / `> **⚠️ 注意**` によるつまずき防止ガイドを追加しました。
-- **バックグラウンド常駐監視プロセス（Watcher）の完全廃止（Ver1.2.0〜1.2.1）**
-  - 旧バージョンの常駐スクリプト（`watcher.ps1` / `watcher.sh`）および OS スタートアップ登録を廃止し、旧環境の常駐が残っている場合も自動で停止・削除するクリーン設計に統一しました。
-- **起動中アプリの安全な自動終了確認・パッチ適用・再起動フローの搭載**
-  - Antigravity を開いたままインストーラーを実行しても、画面の案内に従って `y` を押すだけで安全に再起動と日本語化が完了します。
+- **`Antigravity v2.35.0` / `v2.35.1` の設定画面（Settings）新規項目の網羅翻訳（+301 項目 → 計 1,580 項目）**
+  - `Input Box`、`This computer`、`Chat`、`Conversation steps`、`Knowledge Work`、`Software Engineering`、`Notification settings`、`Font` / `Font size`、`Give Feedback`、`Show All`、`Orchestrator Settings`、`Dictation languages` など、設定画面の未訳項目を大幅に追加しました。
+- **`WebContentsView` 対応 Live reload 修正（`main_hook.js` / `Mod v1.4.7`）**
+  - `webContents.getAllWebContents()` へ辞書更新を配信するよう修正し、設定画面など子ビューに対しても辞書更新がリアルタイム反映されるようにしました。
+- **プラン・利用上限・残り時間などの動的メッセージ翻訳ルールを拡充（`i18n_module.js`）**
+  - `Your plan: ...`、`You can upgrade to a ... plan to receive higher rate limits.`、`Five Hour Limit Remaining`、`You have used some of your 5-hour limit, it will fully refresh in ...` など、数値やプラン名が動的に変化する英語メッセージにも対応しました。
 
 詳細な履歴は **[CHANGELOG.md](./CHANGELOG.md)** を参照してください。
 
@@ -70,7 +68,7 @@ Google の AI 開発デスクトップアプリ **「Antigravity」** のメニ�
 ### 🪟 Windows のインストール手順
 
 #### 手順1：ZIP ファイルをダウンロードする
-[Releases ページ](https://github.com/KeiTakagi/antigravity-ja-dict-installer/releases) から **`antigravity-ja-dict-installer.zip`**（または **`antigravity-ja-dict-installer-Ver1.2.1-windows.zip`**）をダウンロードします。
+[Releases ページ](https://github.com/KeiTakagi/antigravity-ja-dict-installer/releases) から **`antigravity-ja-dict-installer.zip`**（または **`antigravity-ja-dict-installer-Ver1.2.2-windows.zip`**）をダウンロードします。
 
 #### 手順2：ZIP ファイルを「すべて展開（解凍）」する
 ダウンロードした ZIP ファイルを **右クリック** し、メニューから **「すべて展開...」** をクリックして展開します。
@@ -94,7 +92,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\install-windows.ps1
 ### 🍎 macOS のインストール手順
 
 #### 手順1：ZIP ファイルをダウンロードして展開する
-`antigravity-ja-dict-installer-Ver1.2.1-macos.zip` をダウンロードし、ダブルクリックして展開します。
+`antigravity-ja-dict-installer-Ver1.2.2-macos.zip` をダウンロードし、ダブルクリックして展開します。
 
 #### 手順2：ターミナルで実行権限を付与する
 ターミナルを開き、展開したフォルダに移動して以下のコマンドをコピペして実行します。
@@ -119,8 +117,8 @@ Finder から **`AntigravityJP_Setup.command`** をダブルクリックする�
 ターミナルを開き、ダウンロードした `.tar.gz` ファイルを以下のコマンドで展開します。
 
 ```bash
-tar -xzf antigravity-ja-dict-installer-Ver1.2.1-linux.tar.gz
-cd antigravity-ja-dict-installer-Ver1.2.1
+tar -xzf antigravity-ja-dict-installer-Ver1.2.2-linux.tar.gz
+cd antigravity-ja-dict-installer-Ver1.2.2
 ```
 
 #### 手順2：実行権限を付与する
@@ -162,7 +160,7 @@ Antigravity が起動していると、黒い画面に終了確認が表示さ�
 > Antigravity をすでに閉じている状態で実行した場合は、この確認はスキップされ、即座にパッチが適用されます。
 
 #### 手順3：起動確認で `Enter` キーを押して日本語版を起動する
-約1秒で翻訳パッチと辞書（1,279項目）の組み込みが完了します。そのまま **`Enter`** キー（または `Y`）を押すと、日本語に翻訳された Antigravity が起動します。
+約1秒で翻訳パッチと辞書（1,580項目）の組み込みが完了します。そのまま **`Enter`** キー（または `Y`）を押すと、日本語に翻訳された Antigravity が起動します。
 
 ```text
   Antigravity を日本語で起動しますか？ (Y/n): Y
@@ -235,12 +233,12 @@ install-windows.bat
 **【出力（コンソール画面の表示イメージ）】**
 ```text
 ========================================================
-  Antigravity 日本語化インストーラー Ver1.2.1
-  (Antigravity デスクトップ版 v2.35.0 対応セットアップ)
+  Antigravity 日本語化インストーラー Ver1.2.2
+  (Antigravity デスクトップ版 v2.35.1 対応セットアップ)
 ========================================================
 
 Antigravity デスクトップ版の日本語化を構成中...
-  -> 日本語辞書（1,279項目）を配置しました: C:\Users\User\.gemini\antigravity\i18n_dict.json
+  -> 日本語辞書（1,580項目）を配置しました: C:\Users\<ユーザー名>\.gemini\antigravity\i18n_dict.json
   -> Antigravity 本体へ日本語化パッチを適用中...
   -> 日本語化パッチの適用に成功しました！
   -> デスクトップ ショートカットを作成・確認しました。
@@ -263,7 +261,9 @@ Antigravity デスクトップ版の日本語化を構成中...
 | 画面箇所 | 翻訳前の表示（英語原文） | 翻訳後の表示（日本語出力） |
 | :--- | :--- | :--- |
 | **サイドバー / 会話** | `Start New Conversation` | **`新しい会話を開始`** |
-| **設定メニュー** | `Settings` / `Interface Layout` | **`設定`** / **`インターフェースレイアウト`** |
+| **設定メニュー** | `Settings` / `Input Box` / `This computer` | **`設定`** / **`入力欄`** / **`このコンピューター`** |
+| **プラン・上限表示** | `Your plan: Google AI Pro` | **`現在のプラン: Google AI Pro`** |
+| **利用上限通知** | `You have used some of your 5-hour limit, it will fully refresh in 3 hours, 49 minutes.` | **`5時間の上限の一部を使用しました。あと 3時間49分 で全回復します。`** |
 | **エージェント設定** | `Auto-approve safe read-only tool calls` | **`安全な読み取り専用ツール呼び出しを自動承認`** |
 | **内蔵ブラウザ設定** | `Built-in Browser` / `Clear Browser Data` | **`内蔵ブラウザ`** / **`ブラウザデータを消去`** |
 | **アップデート通知** | `A new version is available.` | **`新しいバージョンが利用可能です。`** |
@@ -331,10 +331,10 @@ antigravity-ja-dict-installer/
 ├── uninstall-windows.bat        ★ Windows用 アンインストーラー（英語環境へ復元）
 ├── install-windows.ps1          ★ Windows 自動化セットアップ本体
 ├── uninstall-windows.ps1        ★ Windows 完全アンインストール本体
-├── patcher.js                   ★ app.asar パッチ適用エンジン (Mod v1.4.4)
+├── patcher.js                   ★ app.asar パッチ適用エンジン (Mod v1.4.7)
 ├── i18n_module.js               ★ UI リアルタイム日本語化 Mod
 ├── main_hook.js                 ★ メインプロセス通信・辞書同期フック
-├── i18n_dict.json               ★ 日本語辞書（1,279項目）
+├── i18n_dict.json               ★ 日本語辞書（1,580項目）
 ├── install-linux.sh             ★ Linux用 インストーラー
 ├── uninstall-linux.sh           ★ Linux用 完全アンインストーラー
 ├── install.sh                   ★ macOS / Linux 共通インストーラー
@@ -357,7 +357,7 @@ antigravity-ja-dict-installer/
 - **Google Antigravity 公式ページ**: [https://antigravity.google](https://antigravity.google)
 - **Electron ASAR Archive Format Specification**: [https://github.com/electron/asar](https://github.com/electron/asar)
 - **Electron Process Model & Context Isolation / IPC Documentation**: [https://www.electronjs.org/docs/latest/tutorial/process-model](https://www.electronjs.org/docs/latest/tutorial/process-model)
-- **Antigravity UI Japanese Localization Mod (`v1.4.4`)**: 先行してコミュニティで共有された DOM MutationObserver 翻訳機構および辞書構造の知見
+- **Antigravity UI Japanese Localization Mod (`v1.4.7`)**: DOM MutationObserver 翻訳機構、WebContentsView Live reload 配信、および動的メッセージ正規表現ルール（`REGEX_RULES`）の実装・辞書構造
 
 ---
 

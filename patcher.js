@@ -8,7 +8,7 @@ const path = require("path");
 const crypto = require("crypto");
 const os = require("os");
 
-const VERSION = "1.4.4";
+const VERSION = "1.4.7";
 const MARKER_BASE = "Antigravity UI Japanese Localization Mod";
 const MARKER = `${MARKER_BASE} v${VERSION}`;
 const HERE = __dirname;

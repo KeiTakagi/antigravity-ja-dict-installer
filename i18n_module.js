@@ -2728,7 +2728,43 @@ const REGEX_RULES = [
   { pattern: /^Send feedback as (.+)$/, replace: (m, who) => `${who} としてフィードバックを送信` },
   { pattern: /^(\d+) excluded$/, replace: (m, n) => `${n}件を除外` },
   { pattern: /^(Rules|Skills|Mcp Tools): ([\d,]+) tokens$/, replace: (m, k, n) => `${{ Rules: "ルール", Skills: "スキル", "Mcp Tools": "MCP ツール" }[k]}: ${n} トークン` },
-  { pattern: /^You have used some of your weekly limit, it will fully refresh in (.+)\.$/, replace: (m, t) => `今週の上限の一部を使いました。あと ${t.replace(/(\d+) days?/, "$1日").replace(/(\d+) hours?/, "$1時間").replace(/(\d+) minutes?/, "$1分").replace(/, /g, "")} で全回復します。` }
+  { pattern: /^You have used some of your (weekly|daily|monthly|\d+-hour) limit, it will fully refresh in (.+)\.$/,
+    replace: (m, period, t) => {
+      const P = { weekly: "今週の", daily: "本日の", monthly: "今月の" };
+      const pLabel = P[period] || period.replace(/^(\d+)-hour$/, "$1時間の");
+      const timeJa = t.replace(/(\d+)\s*days?/g, "$1日").replace(/(\d+)\s*hours?/g, "$1時間").replace(/(\d+)\s*minutes?/g, "$1分").replace(/(\d+)\s*seconds?/g, "$1秒").replace(/,\s*and\s*|,\s*|\s+and\s+/g, "");
+      return `${pLabel}上限の一部を使用しました。あと ${timeJa} で全回復します。`;
+    } },
+  { pattern: /^You have (?:reached|exceeded|used all of) your (weekly|daily|monthly|\d+-hour) limit(?:, it will (?:fully )?refresh in (.+))?\.$/,
+    replace: (m, period, t) => {
+      const P = { weekly: "今週の", daily: "本日の", monthly: "今月の" };
+      const pLabel = P[period] || period.replace(/^(\d+)-hour$/, "$1時間の");
+      if (!t) return `${pLabel}上限に達しました。`;
+      const timeJa = t.replace(/(\d+)\s*days?/g, "$1日").replace(/(\d+)\s*hours?/g, "$1時間").replace(/(\d+)\s*minutes?/g, "$1分").replace(/(\d+)\s*seconds?/g, "$1秒").replace(/,\s*and\s*|,\s*|\s+and\s+/g, "");
+      return `${pLabel}上限に達しました。あと ${timeJa} で全回復します。`;
+    } },
+  // プラン・クォータ・通知・動的設定メッセージ
+  { pattern: /^Your plan:\s*(.+)$/, replace: (m, plan) => `現在のプラン: ${plan}` },
+  { pattern: /^You can upgrade to (?:a|an) (.+?) plan to receive higher rate limits\.$/, replace: (m, plan) => `より高い利用上限（レート制限）を受けるには、${plan} プランへアップグレードできます。` },
+  { pattern: /^(One|Two|Three|Four|Five|Six|Eight|Twelve|\d+)[-\s]Hour Limit Remaining$/,
+    replace: (m, h) => {
+      const H = { One: "1", Two: "2", Three: "3", Four: "4", Five: "5", Six: "6", Eight: "8", Twelve: "12" };
+      return `${H[h] || h}時間の利用上限（残り）`;
+    } },
+  { pattern: /^(.+?) Limit Remaining$/, replace: (m, label) => `${{ Weekly: "週間", Daily: "日間", Monthly: "月間" }[label] || label}利用上限（残り）` },
+  { pattern: /^Project ID:\s*(.+)$/, replace: (m, id) => `プロジェクト ID: ${id}` },
+  { pattern: /^Available AI credits:\s*(.+)$/, replace: (m, c) => `利用可能な AI クレジット: ${c}` },
+  { pattern: /^Manage (.+?) app settings\.$/, replace: (m, name) => `${name} アプリの設定を管理します。` },
+  { pattern: /^Choose (.+?)'s Voice$/, replace: (m, name) => `${name} の音声を選択` },
+  { pattern: /^When toggled on, (.+?) collects usage data to help Google enhance performance and features\.$/, replace: (m, name) => `オンにすると、${name} はパフォーマンスと機能の向上のために使用状況データを収集します。` },
+  { pattern: /^Receive product updates, tips, and promotions from Google (.+?) via email\.$/, replace: (m, name) => `Google ${name} の製品アップデート、ヒント、プロモーションをメールで受け取ります。` },
+  { pattern: /^When toggled on, (.+?) will use your AI credits to fulfill model requests once you're out of model quota\. (.+?) will always use your model quota first before using AI credits\.$/, replace: (m, n1) => `オンにすると、モデルのクォータを使い切った後に AI クレジットを使用してリクエストを処理します。${n1} は常に AI クレジットより先にモデルクォータを使用します。` },
+  { pattern: /^Recording shortcut for (.+?)\. Press keys to bind, Enter to save, Escape to cancel\.$/, replace: (m, name) => `${name} のショートカットを記録中。割り当てるキーを押し、Enter で保存、Escape でキャンセルします。` },
+  { pattern: /^(\d+) tools? enabled$/, replace: (m, n) => `${n}個のツールが有効` },
+  { pattern: /^Are you sure you want to delete the hook "(.+)"\?$/, replace: (m, name) => `フック「${name}」を削除してもよろしいですか？` },
+  { pattern: /^Version (.+)$/, replace: (m, v) => `バージョン ${v}` },
+  { pattern: /^Refreshes in (.+)$/, replace: (m, t) => `あと ${t.replace(/(\d+)\s*days?/, "$1日").replace(/(\d+)\s*hours?/, "$1時間").replace(/(\d+)\s*minutes?/, "$1分").replace(/(\d+)\s*seconds?/, "$1秒").replace(/, /g, "")} で回復` },
+  { pattern: /^Resets in (.+)$/, replace: (m, t) => `あと ${t.replace(/(\d+)\s*days?/, "$1日").replace(/(\d+)\s*hours?/, "$1時間").replace(/(\d+)\s*minutes?/, "$1分").replace(/(\d+)\s*seconds?/, "$1秒").replace(/, /g, "")} でリセット` }
 ];
 
 function initI18n() {
@@ -2751,6 +2787,11 @@ function initI18n() {
     return false;
   }
 
+  const untranslatedSet = new Set();
+  if (typeof window !== "undefined") {
+    window.__agyGetUntranslated = () => Array.from(untranslatedSet);
+  }
+
   function translateText(text) {
     const trimmed = text.trim();
     if (!trimmed) return null;
@@ -2762,6 +2803,11 @@ function initI18n() {
     for (const rule of REGEX_RULES) {
       if (rule.pattern.test(trimmed)) {
         return text.replace(trimmed, trimmed.replace(rule.pattern, rule.replace));
+      }
+    }
+    if (trimmed.length >= 3 && trimmed.length <= 200 && /[A-Za-z]{2,}/.test(trimmed) && !/[\u3040-\u30ff\u4e00-\u9faf]/.test(trimmed)) {
+      if (!/^(https?:\/\/|file:\/\/|[A-Z]:\\|\/)/.test(trimmed)) {
+        untranslatedSet.add(trimmed);
       }
     }
     return null;
