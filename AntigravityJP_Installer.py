@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Antigravity 日本語化インストーラー (antigravity-ja-dict-installer) Ver1.1.0
+Antigravity 日本語化インストーラー (antigravity-ja-dict-installer) Ver1.2.0
 ==========================================================================
 Windows / macOS / Linux マルチプラットフォーム対応
-Antigravity IDE の全言語設定ファイル (コア UI 16,558 件 + 言語パック + 全拡張機能) を
-ワンクリックまたはコマンドラインで 100% 日本語化します。
+Antigravity デスクトップアプリのメニュー・設定画面・UI（全 1,279 項目）を
+常駐プロセスなし（CPU/メモリ消費ゼロ）でワンクリック日本語化します。
+※ Antigravity IDE (VS Code エディタ版) の設定は変更しません（完全除外）。
 """
 
 import argparse
@@ -15,30 +16,27 @@ import subprocess
 import sys
 from pathlib import Path
 
-APP_VERSION = "1.1.0"
+APP_VERSION = "1.2.0"
 CURRENT_OS = platform.system()
 SCRIPT_DIR = Path(__file__).resolve().parent
 
 
-def find_python_executable() -> str:
-    if sys.executable and Path(sys.executable).exists():
-        return sys.executable
-    return "python" if CURRENT_OS == "Windows" else "python3"
-
-
-def get_translate_script() -> Path:
-    return SCRIPT_DIR / "scripts" / "translate_antigravity.py"
-
-
 def run_translation(mode: str = "--apply", app_dir: str | None = None, log_callback=None) -> tuple[int, str]:
-    py = find_python_executable()
-    script = get_translate_script()
-    cmd = [py, str(script), mode]
-    if app_dir:
-        cmd.extend(["--app-dir", app_dir])
+    if CURRENT_OS == "Windows":
+        ps1 = SCRIPT_DIR / ("uninstall-windows.ps1" if mode == "--restore" else "install-windows.ps1")
+        cmd = ["powershell.exe", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", str(ps1)]
+        if mode == "--status":
+            cmd.append("-Status")
+        elif mode == "--apply":
+            cmd.append("-Silent")
+    else:
+        sh_script = SCRIPT_DIR / ("uninstall-linux.sh" if mode == "--restore" else "install-linux.sh")
+        cmd = ["/bin/bash", str(sh_script)]
+        if mode == "--status":
+            cmd.append("--status")
 
     if log_callback:
-        log_callback(f"[Installer] 翻訳スクリプトを実行中: {' '.join(cmd)}")
+        log_callback(f"[Installer] 実行中: {' '.join(cmd)}")
 
     env = os.environ.copy()
     env["PYTHONIOENCODING"] = "utf-8"
@@ -80,8 +78,8 @@ def launch_cli_interactive(default_app_dir: str | None = None) -> int:
     while True:
         print("\n実行したい操作を選択してください:")
         print("  [1] 日本語化を適用する (推奨)")
-        print("  [2] 現在の翻訳ステータスを確認する")
-        print("  [3] バックアップから英語環境へ復元 (アンインストール)")
+        print("  [2] 現在の日本語化ステータスを確認する")
+        print("  [3] 公式の英語環境へ復元 (アンインストール)")
         print("  [0] 終了")
         try:
             choice = input("\n番号を入力 [1]: ").strip() or "1"
@@ -94,14 +92,14 @@ def launch_cli_interactive(default_app_dir: str | None = None) -> int:
         elif choice == "1":
             code, _ = run_translation("--apply", app_dir=default_app_dir, log_callback=print)
             if code == 0:
-                print("\n[完了] 日本語化が完了しました。Antigravity IDE を再起動すると反映されます。")
+                print("\n[完了] 日本語化が完了しました。Antigravity を再起動すると反映されます。")
             return code
         elif choice == "2":
             run_translation("--status", app_dir=default_app_dir, log_callback=print)
         elif choice == "3":
             code, _ = run_translation("--restore", app_dir=default_app_dir, log_callback=print)
             if code == 0:
-                print("\n[完了] 元の英語設定ファイルを復元しました。")
+                print("\n[完了] 公式の英語状態へ復元しました。")
             return code
 
 
@@ -130,7 +128,7 @@ def launch_gui(default_app_dir: str | None = None) -> int:
 
     tk.Label(
         header_frame,
-        text="Antigravity IDE のメニュー・設定・拡張機能・言語パックを 100% 日本語化します（常駐プロセスなし・CPU/メモリ消費ゼロ）",
+        text="Antigravity デスクトップアプリのメニュー・設定・UI を 100% 日本語化します（常駐プロセスなし・CPU/メモリ消費ゼロ）",
         font=("Yu Gothic UI", 9),
         fg="#a6adc8",
         bg="#181825",
@@ -170,7 +168,8 @@ def launch_gui(default_app_dir: str | None = None) -> int:
         root.after(0, _do)
 
     append_log(f"Antigravity 日本語化インストーラー Ver{APP_VERSION} へようこそ。")
-    append_log("下の「日本語化を実行」ボタンを押すと、バックアップを作成した上で全言語設定ファイルを日本語化します。")
+    append_log("下の「日本語化を実行」ボタンを押すと、Antigravity デスクトップアプリに日本語化パッチと辞書（1,279項目）を適用します。")
+    append_log("※ Antigravity IDE (VS Code エディタ版) の設定は変更しません。常駐プロセスも作成しません。")
     append_log("-" * 64)
 
     btn_frame = tk.Frame(root, bg="#181825", padx=20, pady=12)
@@ -200,12 +199,12 @@ def launch_gui(default_app_dir: str | None = None) -> int:
                         0,
                         lambda: messagebox.showinfo(
                             "日本語化完了",
-                            "Antigravity IDE の全言語設定ファイルの日本語化が完了しました！\n\n"
-                            "Antigravity IDE を再起動すると日本語表示が反映されます。",
+                            "Antigravity デスクトップアプリの日本語化セットアップが完了しました！\n\n"
+                            "Antigravity を起動（または再起動）すると日本語表示が反映されます。",
                         ),
                     )
                 else:
-                    root.after(0, lambda: messagebox.showerror("エラー", "翻訳適用中にエラーが発生しました。ログを確認してください。"))
+                    root.after(0, lambda: messagebox.showerror("エラー", "適用中にエラーが発生しました。ログを確認してください。"))
             finally:
                 set_busy(False)
         threading.Thread(target=worker, daemon=True).start()
@@ -220,14 +219,14 @@ def launch_gui(default_app_dir: str | None = None) -> int:
         threading.Thread(target=worker, daemon=True).start()
 
     def on_restore():
-        if not messagebox.askyesno("復元確認", "バックアップから元の英語設定ファイルを復元しますか？"):
+        if not messagebox.askyesno("復元確認", "Antigravity デスクトップアプリを公式の英語状態へ復元しますか？"):
             return
         def worker():
             set_busy(True)
             try:
                 code, _ = run_translation("--restore", app_dir=default_app_dir, log_callback=append_log)
                 if code == 0:
-                    root.after(0, lambda: messagebox.showinfo("復元完了", "バックアップからの復元が完了しました。"))
+                    root.after(0, lambda: messagebox.showinfo("復元完了", "公式の英語状態への復元が完了しました。"))
             finally:
                 set_busy(False)
         threading.Thread(target=worker, daemon=True).start()
@@ -240,7 +239,7 @@ def launch_gui(default_app_dir: str | None = None) -> int:
         fg="#11111b",
         activebackground="#b4befe",
         font=("Yu Gothic UI", 10, "bold"),
-         relief=tk.FLAT,
+        relief=tk.FLAT,
         padx=18,
         pady=6,
         cursor="hand2",
@@ -249,7 +248,7 @@ def launch_gui(default_app_dir: str | None = None) -> int:
 
     btn_status = tk.Button(
         btn_frame,
-        text="翻訳ステータス確認",
+        text="ステータス確認",
         command=on_status,
         bg="#313244",
         fg="#cdd6f4",
@@ -279,12 +278,12 @@ def launch_gui(default_app_dir: str | None = None) -> int:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Antigravity 日本語化インストーラー (Windows / macOS / Linux)")
+    parser = argparse.ArgumentParser(description="Antigravity 日本語化インストーラー Ver1.2.0 (Windows / macOS / Linux)")
     parser.add_argument("--silent", action="store_true", help="GUI を表示せず自動で日本語化を適用する")
     parser.add_argument("--cli", action="store_true", help="対話型 CLI メニューで起動する")
-    parser.add_argument("--status", action="store_true", help="現在の翻訳状況を確認する")
-    parser.add_argument("--restore", "--uninstall", action="store_true", dest="restore", help="バックアップから元の英語設定ファイルを復元する")
-    parser.add_argument("--app-dir", type=str, default=None, help="Antigravity IDE の resources/app ディレクトリを明示指定する")
+    parser.add_argument("--status", action="store_true", help="現在の日本語化状況を確認する")
+    parser.add_argument("--restore", "--uninstall", action="store_true", dest="restore", help="公式の英語状態へ復元する")
+    parser.add_argument("--app-dir", type=str, default=None, help="Antigravity のインストールディレクトリを明示指定する")
     args = parser.parse_args()
 
     if args.status:

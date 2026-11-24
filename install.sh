@@ -1,10 +1,16 @@
 #!/usr/bin/env bash
 # ============================================================================
-# Antigravity 日本語化インストーラー Ver1.1.0 (macOS / Linux)
+# Antigravity 日本語化インストーラー Ver1.2.0 (macOS / Linux)
 # ============================================================================
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+if [ "$(uname -s)" = "Linux" ] && [ -f "${SCRIPT_DIR}/install-linux.sh" ]; then
+    chmod +x "${SCRIPT_DIR}/install-linux.sh" 2>/dev/null || true
+    exec "${SCRIPT_DIR}/install-linux.sh" "$@"
+fi
+
 INSTALLER_PY="${SCRIPT_DIR}/AntigravityJP_Installer.py"
 
 find_python() {

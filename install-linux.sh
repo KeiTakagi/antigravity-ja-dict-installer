@@ -21,17 +21,21 @@ fi
 
 mkdir -p "${DATA_DIR}"
 
-# 1. Modプログラムファイル＆Watcherの配置
-echo "[1/4] 日本語化Modプログラムとアップデート監視役を配置中..."
-for f in "i18n_module.js" "main_hook.js" "patcher.js" "watcher.sh"; do
+# 1. Modプログラムファイルの配置
+echo "[1/3] 日本語化Modプログラムを配置中..."
+for f in "i18n_module.js" "main_hook.js" "patcher.js"; do
     if [ -f "${SCRIPT_DIR}/${f}" ]; then
         cp -f "${SCRIPT_DIR}/${f}" "${DATA_DIR}/${f}"
     fi
 done
-chmod +x "${DATA_DIR}/watcher.sh" 2>/dev/null || true
+
+# 監視プロセスは不要のため停止・クリーンアップ
+pkill -f "watcher.sh" 2>/dev/null || true
+rm -f "${HOME}/.config/autostart/antigravity-ja-watcher.desktop" 2>/dev/null || true
+rm -f "${DATA_DIR}/watcher.sh" 2>/dev/null || true
 
 # 2. 辞書ファイル (i18n_dict.json) の配置・マージ
-echo "[2/4] 日本語辞書ファイルを配置・マージ中..."
+echo "[2/3] 日本語辞書ファイルを配置・マージ中..."
 SRC_DICT="${SCRIPT_DIR}/i18n_dict.json"
 DEST_DICT_DIR="${HOME}/.gemini/antigravity"
 DEST_DICT="${DEST_DICT_DIR}/i18n_dict.json"
@@ -62,31 +66,15 @@ else
 fi
 
 # 3. 初期パッチの適用
-echo "[3/4] Antigravity 本体へ日本語パッチを適用中..."
+echo "[3/3] Antigravity 本体へ日本語パッチを適用中..."
 PATCHER="${DATA_DIR}/patcher.js"
 if [ -n "${EXE}" ] && [ -x "${EXE}" ] && [ -f "${PATCHER}" ]; then
     ELECTRON_RUN_AS_NODE=1 "${EXE}" "${PATCHER}" || echo "  -> パッチは次回起動時に適用されます"
     echo "  -> 日本語パッチの適用に成功しました！"
 fi
 
-# 4. アップデート監視役（Watcher）の自動起動登録
-echo "[4/4] アップデート監視役（Watcher）を登録・起動中..."
-AUTOSTART_DIR="${HOME}/.config/autostart"
-mkdir -p "${AUTOSTART_DIR}"
-cat <<EOF > "${AUTOSTART_DIR}/antigravity-ja-watcher.desktop"
-[Desktop Entry]
-Type=Application
-Name=Antigravity Japanese Localization Watcher
-Exec=/bin/bash "${DATA_DIR}/watcher.sh"
-Terminal=false
-NoDisplay=true
-EOF
-
-pkill -f "watcher.sh" 2>/dev/null || true
-nohup /bin/bash "${DATA_DIR}/watcher.sh" >/dev/null 2>&1 &
-
 echo ""
 echo "========================================================"
 echo "  セットアップが完了しました！"
-echo "  Antigravity がアップデートされても自動で日本語が維持されます。"
+echo "  Antigravity を起動すると、日本語表示でご利用いただけます。"
 echo "========================================================"

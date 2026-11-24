@@ -1,12 +1,19 @@
 # Changelog
 
-## [Ver1.1.0] - 2026-11-12
+## [Ver1.2.0] - 2026-11-24
+
+### Changed & Improved
+- **バックグラウンド常駐監視プロセス（Watcher）の完全廃止**
+  - `watcher.ps1` / `watcher.sh` および OS スタートアップ（Run レジストリ / autostart）への常駐登録を廃止し、旧バージョンの常駐プロセスや登録が存在する場合は自動でクリーンアップする仕組みを追加。
+- **Antigravity デスクトップアプリ専用化（Antigravity IDE の完全除外）**
+  - 対象を Google Antigravity デスクトップアプリ (`Antigravity.exe` / `app.asar`) のみに厳格化し、Antigravity IDE (VS Code エディタ版) の設定変更を一切行わない安全設計に統一。
+- **起動中アプリの自動終了確認・ワンショットパッチ適用・再起動フローの改善**
+  - Antigravity 起動中にインストーラーを実行した場合も、安全に終了・パッチ適用・日本語での再起動までを対話的に完了できるよう改善。
+- **最新 UI 対応の日本語辞書（1,279 項目）および Mod v1.4.4 を収録**
+  - メニュー、Settings、Interface Layout、内蔵ブラウザ、音声設定、チャット画面の日本語化辞書（Live reload 対応）を更新。
+- **不要ファイルの整理とパッケージ構造のスリム化**
+
+## [Ver1.1.0] - 2026-11-22
 
 ### Added
-- **Windows / macOS / Linux マルチプラットフォーム対応インストーラー** (`AntigravityJP_Installer.py`, `install-windows.bat`, `AntigravityJP_Setup.command`, `install.sh`) を新規実装。
-- **全言語設定ファイルの 100% 完全日本語化エンジン** (`scripts/translate_antigravity.py`) および **1,326 項目の日本語翻訳辞書** (`translations/ja_dictionary.json`) を搭載。
-  - コア UI (`nls.messages.json` 全 16,558 件) の未翻訳残存 647 件を完全翻訳。
-  - 日本語言語パック (`main.i18n.json`) に Antigravity 固有モジュール 1,228 キーを追加。
-  - 組み込み拡張機能（全 101 個）とユーザー拡張機能の `package.nls.json` / `package.nls.ja.json` を完全日本語化。
-  - CLP キャッシュ (`clp/*/nls.messages.json`) および `argv.json` (`"locale": "ja"`) の自動更新に対応。
-- Windows 用バッチファイル (`install-windows.bat`, `AntigravityJP_Setup.bat`, `uninstall-windows.bat`) を Shift-JIS (`cp932`) + `CRLF` 形式に統一。
+- Windows / macOS / Linux マルチプラットフォーム対応パッケージと 1,279 項目の日本語辞書を公開。

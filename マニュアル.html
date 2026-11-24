@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Antigravity 日本語化＆自動更新マニュアル (Windows / Linux)</title>
+  <title>Antigravity 日本語化マニュアル Ver1.2.0 (Windows / macOS / Linux)</title>
   <style>
     :root {
       --primary: #1a73e8;
@@ -17,8 +17,6 @@
       --warning-border: #f9ab00;
       --success-bg: #e6f4ea;
       --success-border: #34a853;
-      --info-bg: #e8f0fe;
-      --info-border: #1a73e8;
     }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -167,8 +165,8 @@
 <body>
 
 <div class="container">
-  <h1>Antigravity 日本語化＆自動更新マニュアル</h1>
-  <p>このツールを使うと、Google の AI 開発アプリ「Antigravity」を<strong>メニュー・設定画面（Interface Layout含む）・内蔵ブラウザ・音声設定までまとめて日本語化</strong>できます。一度インストールを実施すると、アプリがアップデートされた場合でも自動で検知し、<strong>常に新しく日本語化された状態</strong>を自動で維持します。</p>
+  <h1>Antigravity 日本語化マニュアル Ver1.2.0</h1>
+  <p>このツールを使うと、Google の AI 開発アプリ「Antigravity」（デスクトップ版）を<strong>メニュー・設定画面（Interface Layout含む）・内蔵ブラウザ・音声設定・チャットUIまでまとめて日本語化（1,279項目対応）</strong>できます。バックグラウンド常駐プロセスを一切使わないクリーン＆軽量設計です。</p>
 
   <h2>🪟 Windows の方（たったの2ステップ）</h2>
 
@@ -189,24 +187,24 @@
       インストーラーを実行する
     </div>
     <p>展開したフォルダの中にある <strong><code>install-windows.bat</code></strong> をダブルクリックして実行します。</p>
-    <p>黒い画面が開き、数秒でセットアップが完了します。画面に <code>Setup completed successfully!</code> と表示されたら、<span class="key">Enter</span> キーを押して画面を閉じてください。</p>
+    <p>Antigravity が起動中の場合は、自動で安全に終了して日本語化パッチを適用し、そのまま日本語表示で再起動できます。</p>
 
     <div class="alert-box">
       <strong>💡 「Windows によって PC が保護されました」という青い画面が出たら？</strong><br>
       1. 画面中央の <strong>「詳細情報」</strong> という文字をクリックします。<br>
-      2. 右下に出てくる <strong>「実行」</strong> ボタンをクリックしてください。（安全なスクリプトのため問題ありません）
+      2. 右下に出てくる <strong>「実行」</strong> ボタンをクリックしてください。
     </div>
 
     <div class="success-box">
       <strong>🎉 これで完了です！</strong><br>
-      デスクトップの「Antigravity」アイコンから通常通り起動してください。アプリが自動アップデートされた場合でも、裏の超軽量な見張り役が自動検知して即座にパッチを再適用します。（手動で再インストールする必要はありません）
+      デスクトップの「Antigravity」アイコンから通常通り起動すると、すべて日本語表示でご利用いただけます。
     </div>
   </div>
 
-  <h2>🐧 Linux の方</h2>
+  <h2>🍎 macOS / 🐧 Linux の方</h2>
   <div class="step-card">
-    <p>1. 解凍したフォルダでターミナルを開きます。<br>
-       2. 次の 2 行を実行するだけで完了です：</p>
+    <p><strong>macOS:</strong> <code>AntigravityJP_Setup.command</code> をダブルクリックするか、ターミナルで <code>./install.sh</code> を実行します。</p>
+    <p><strong>Linux:</strong> 解凍したフォルダでターミナルを開き、次の 2 行を実行します：</p>
     <pre>chmod +x install-linux.sh
 ./install-linux.sh</pre>
   </div>
@@ -214,18 +212,18 @@
   <h2>❓ よくある質問</h2>
 
   <div class="qa-box">
-    <div class="qa-q">Q. アプリが自動アップデートされたら、手動で何か作業が必要ですか？</div>
-    <div class="qa-a">一切不要です！バックグラウンドの監視役がアップデートを瞬時に検知し、自動で日本語パッチを当て直してくれます。常に日本語でお使いいただけます。</div>
+    <div class="qa-q">Q. バックグラウンドで常駐する監視プロセスはありますか？</div>
+    <div class="qa-a">Ver1.2.0 ではバックグラウンド常駐プロセス（Watcher）を完全廃止しました。メモリや CPU を一切消費しません。</div>
   </div>
 
   <div class="qa-box">
-    <div class="qa-q">Q. バックグラウンドの監視役でパソコンが重くなりませんか？</div>
-    <div class="qa-a">CPU 使用率は 0.0%、メモリ消費もわずか数 MB の超軽量な休眠処理のため、パソコンの動作やバッテリーに影響を与えることはありません。</div>
+    <div class="qa-q">Q. Antigravity IDE (VS Code エディタ版) の設定は変わりますか？</div>
+    <div class="qa-a">いいえ。本ツールは Antigravity デスクトップアプリ専用であり、Antigravity IDE の設定は一切変更しません（完全除外）。</div>
   </div>
 
   <div class="qa-box">
     <div class="qa-q">Q. 元の状態（公式の英語）に完全に戻したいときは？</div>
-    <div class="qa-a">フォルダ内にある <strong><code>uninstall-windows.bat</code></strong>（Linux は <code>./uninstall-linux.sh</code>）をダブルクリックし、確認画面で <span class="key">y</span> を押すだけで、監視役を含めて公式の初期状態に完全に復元されます。</div>
+    <div class="qa-a">フォルダ内にある <strong><code>uninstall-windows.bat</code></strong>（Linux は <code>./uninstall-linux.sh</code>、macOS は <code>./uninstall.sh</code>）を実行し、確認画面で <span class="key">y</span> を押すだけで、公式の初期状態に完全に復元されます。</div>
   </div>
 
   <div class="disclaimer-box">
@@ -234,12 +232,11 @@
       <li><strong>非公式ツール：</strong> 本ツールは有志が作成した非公式（Unofficial）のローカライズツールであり、Google LLC との関係、提携、保証等はありません。</li>
       <li><strong>無保証・自己責任：</strong> 本ツールの使用によって生じたいかなる損害（データ破損、アプリの不具合等）についても、作成者は一切の責任を負いかねます。自己責任にてご利用ください。</li>
       <li><strong>著作権・再配布について：</strong> 本ツールには Antigravity 本体の実行ファイルや著作物は同梱されておらず、ローカル差分適用スクリプトおよび辞書データのみで構成されています。</li>
-      <li><strong>謝辞：</strong> 本ツールのパッチ機構および辞書ベースは、先行してコミュニティで Antigravity 日本語化 Mod を公開・共有してくださった有志の方々の知見を参考に作成されています。</li>
     </ul>
   </div>
 
   <footer>
-    Antigravity Japanese Localization Installer (Windows &amp; Linux)
+    Antigravity Japanese Localization Installer Ver1.2.0 (Windows / macOS / Linux)
   </footer>
 </div>
 
